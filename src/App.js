@@ -3,6 +3,13 @@ import Navbar from "./components/Navbar";
 import Textbox from "./components/Textbox";
 import React,{useState} from "react";
 import Alert from "./components/Alert";
+import About from "./components/About";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
 
 function App() {
 
@@ -58,12 +65,19 @@ function App() {
 
   return (
     <>
-
+      <Router>
       <Navbar title="TextUtils" mode={mode} toggleMode={toggle} light={lightMode} dark={darkMode} primary={primaryMode}/>
       <Alert alert={alertt}/>
       <div className="container my-3">
-      <Textbox title="Enter text for analyze" mode={mode}/>
+        <Routes>
+          <Route exact path="/" element={<Textbox title="Enter text for analyze" mode={mode}/>} />
+            
+          
+          <Route path="/about" element={<About mode={mode}/>} />
+         
+        </Routes>
       </div>
+      </Router>
 
     </>
   );
